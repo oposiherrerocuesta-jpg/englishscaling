@@ -6,169 +6,147 @@
 <style>
   @page { size: A4; margin: 0; }
   :root {
-    --cream: #FBFAF7; --navy: #0E0E6B; --red: #E8403F;
-    --gray: #6B6F80; --soft: #9A9CAA; --line: #E7E4DE;
+    --cream: #FBFAF7; --navy: #0E0E6B; --red: #E8403F; --gray: #6B6F80;
+    --lav: #EFEEF8; --line: #E7E4DE; --dark: #1D1D1F; --gold: #C9A35B; --gold-soft: #DFD3BE;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { width: 210mm; background: var(--cream); }
+  html, body { width: 210mm; height: 297mm; background: var(--cream); }
   body { font-family: "Inter", sans-serif; color: var(--navy); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .page { position: relative; width: 210mm; height: 297mm; padding: 20mm 22mm 0; overflow: hidden; page-break-after: always; }
-  .page:last-child { page-break-after: auto; }
-  .display { font-family: "Inter Display", "Inter", sans-serif; font-weight: 700; letter-spacing: -.03em; }
+  .page { position: relative; width: 210mm; height: 297mm; padding: 12mm 17mm 0; overflow: hidden; }
+  .display { font-family: "Inter Display", "Inter", sans-serif; font-weight: 700; letter-spacing: -.015em; }
 
-  .logo { height: 9mm; display: block; }
-  .eyebrow { font-size: 8pt; font-weight: 700; letter-spacing: .34em; color: var(--red); }
+  header { display: flex; justify-content: space-between; align-items: flex-start; }
+  .brand img { height: 12.5mm; display: block; }
+  .tag { margin-top: 2.2mm; font-size: 9.6pt; color: var(--gray); }
+  .tag b { color: var(--navy); font-weight: 700; } .tag b i { color: var(--red); font-style: normal; }
+  .who { display: flex; align-items: center; gap: 3.5mm; text-align: right; margin-top: 2mm; }
+  .who strong { display: block; font-size: 10pt; font-weight: 700; }
+  .who span { font-size: 8pt; color: var(--gray); }
+  .who img { width: 13mm; height: 13mm; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.12); }
 
-  /* page 1 */
-  .hero { margin-top: 36mm; }
-  h1 { margin-top: 5mm; font-size: 52pt; line-height: .98; }
-  .sub { margin-top: 8mm; font-size: 13pt; line-height: 1.5; color: var(--gray); max-width: 150mm; }
+  .eyebrow { margin-top: 7mm; font-size: 7.6pt; font-weight: 700; letter-spacing: .32em; color: var(--red); }
+  h1 { margin-top: 1.8mm; font-size: 27pt; line-height: 1.05; }
+  .lead { margin-top: 2.4mm; font-size: 10.5pt; line-height: 1.45; color: var(--gray); }
+  .lead b { color: var(--navy); font-weight: 600; }
 
-  .price { margin-top: 20mm; display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-  .price .col { padding: 10mm 0; }
-  .price .col + .col { padding-left: 12mm; border-left: 1px solid var(--line); }
-  .lbl { font-size: 10.5pt; font-weight: 600; }
-  .num { margin-top: 3.5mm; font-size: 58pt; line-height: 1; }
-  .num span { font-family: "Inter", sans-serif; font-size: 14pt; font-weight: 500; letter-spacing: 0; color: var(--gray); margin-left: 1.5mm; }
-  .cmp { margin-top: 4mm; font-size: 9pt; color: var(--soft); }
+  /* prices */
+  .prices { margin-top: 6mm; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4mm; }
+  .card { background: var(--dark); border-radius: 4mm; padding: 5mm 5.5mm; color: #fff; }
+  .card.two { outline: 1.5px solid var(--gold); outline-offset: -1.5px; }
+  .card .k { font-size: 7.2pt; font-weight: 700; letter-spacing: .24em; color: var(--gold); }
+  .card .amt { margin-top: 3mm; display: flex; align-items: baseline; gap: 1.6mm; }
+  .card .amt b { font-size: 34pt; line-height: 1; color: var(--gold); }
+  .card .amt span { font-size: 10.5pt; color: var(--gold-soft); font-weight: 600; }
+  .card .cmp { margin-top: 3.2mm; padding-top: 2.6mm; border-top: 1px solid #3A3833; font-size: 8pt; color: #B9B9C0; line-height: 1.4; }
+  .card .cmp b { color: #E6E3DC; font-weight: 600; }
+  .founder { background: var(--red); color: #fff; border-radius: 4mm; padding: 5mm 5.5mm; display: flex; flex-direction: column; justify-content: space-between; }
+  .founder .k { font-size: 7.2pt; font-weight: 700; letter-spacing: .24em; opacity: .9; }
+  .founder .big { margin-top: 2.4mm; font-size: 16pt; line-height: 1.12; }
+  .founder p { margin-top: 2mm; font-size: 8.2pt; line-height: 1.4; }
+  .seats { display: flex; gap: 1.6mm; margin-top: 3mm; }
+  .seats i { width: 5mm; height: 5mm; border-radius: 50%; border: 1.6px solid #fff; background: rgba(255,255,255,.15); }
 
-  .founder { margin-top: 8mm; font-size: 10.5pt; line-height: 1.5; color: var(--gray); }
-  .founder b { color: var(--navy); font-weight: 700; }
-  .founder i { display: inline-block; width: 2.4mm; height: 2.4mm; border-radius: 50%; background: var(--red); margin-right: 2.6mm; vertical-align: .2mm; }
+  /* includes */
+  .inc { margin-top: 5mm; background: var(--dark); border-radius: 4mm; padding: 6mm 7mm 5.5mm; color: #fff; }
+  .inc .k { font-size: 7.4pt; font-weight: 700; letter-spacing: .3em; color: var(--gold); }
+  .inc ul { list-style: none; columns: 2; column-gap: 9mm; margin-top: 3.4mm; }
+  .inc li { font-size: 9.4pt; line-height: 1.25; padding: 1.15mm 0 1.15mm 6.6mm; position: relative; break-inside: avoid; }
+  .inc li::before { content: ""; position: absolute; left: .4mm; top: 2.1mm; width: 3mm; height: 1.6mm; border-left: 1.7px solid var(--gold); border-bottom: 1.7px solid var(--gold); transform: rotate(-45deg); }
 
-  .promises { margin-top: 24mm; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10mm; }
-  .promises h3 { font-size: 11.5pt; font-weight: 700; }
-  .promises p { margin-top: 2mm; font-size: 9.5pt; line-height: 1.5; color: var(--gray); }
-
-  /* page 2 */
-  h2 { margin-top: 11mm; font-size: 34pt; line-height: 1.04; }
-  .p2 .sub { margin-top: 4mm; font-size: 12pt; }
-  .grid { margin-top: 9mm; padding-top: 7mm; border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(3, 1fr); gap: 8mm 9mm; }
-  .g h4 { font-size: 7.4pt; font-weight: 700; letter-spacing: .26em; color: var(--red); }
-  .g ul { list-style: none; margin-top: 3.2mm; }
-  .g li { font-size: 10pt; line-height: 1.35; padding: 1.5mm 0; }
-
-  .terms { margin-top: 10mm; padding-top: 6mm; border-top: 1px solid var(--line); }
-  .terms h5 { font-size: 8.5pt; font-weight: 700; }
-  .terms .cols { margin-top: 3.5mm; columns: 2; column-gap: 10mm; }
-  .terms p { font-size: 7.6pt; line-height: 1.5; color: var(--gray); margin-bottom: 2.2mm; break-inside: avoid; }
+  /* fine print */
+  .terms { margin-top: 5mm; border: 1px solid var(--line); background: #fff; border-radius: 3mm; padding: 4mm 5mm 3mm; }
+  .terms h5 { font-size: 7.4pt; font-weight: 700; letter-spacing: .26em; color: var(--red); }
+  .terms .cols { margin-top: 2.4mm; columns: 2; column-gap: 8mm; }
+  .terms p { font-size: 6.9pt; line-height: 1.45; color: var(--gray); margin-bottom: 1.6mm; break-inside: avoid; }
   .terms p b { color: var(--navy); font-weight: 600; }
 
-  footer { position: absolute; left: 22mm; right: 22mm; bottom: 12mm; display: flex; justify-content: space-between; align-items: center; }
-  footer img { height: 4mm; }
-  footer span { font-size: 8pt; color: var(--soft); }
+  footer { position: absolute; left: 17mm; right: 17mm; bottom: 8mm; border-top: 1px solid var(--line); padding-top: 3mm; display: flex; justify-content: space-between; align-items: center; }
+  footer img { height: 4.6mm; }
+  footer span { font-size: 7.4pt; color: var(--gray); }
 </style>
 </head>
 <body>
+<div class="page">
+  <header>
+    <div class="brand">
+      <img src="logo.png" alt="ONYX">
+      <div class="tag"><b><i>O</i>w<i>N</i> <i>Y</i>our e<i>X</i>ams.</b>&nbsp; Domina tus exámenes.</div>
+    </div>
+    <div class="who">
+      <div><strong>Nacho Herrero Cuesta</strong><span>Programa de acompañamiento en inglés</span></div>
+      <img src="photo.png" alt="">
+    </div>
+  </header>
 
-<section class="page p1">
-  <img class="logo" src="logo.png" alt="ONYX">
+  <div class="eyebrow">ONYX APEX · CURSO COMPLETO</div>
+  <h1 class="display">Todo el curso, mes a mes.</h1>
+  <p class="lead">Funciona como una suscripción: <b>una cuota al mes desde el día que empezáis, y en junio termina sola.</b> Sin pagos grandes ni sorpresas.</p>
 
-  <div class="hero">
-    <div class="eyebrow">ONYX APEX</div>
-    <h1 class="display">Todo el curso.<br>Mes a mes.</h1>
-    <p class="sub">El acompañamiento más completo de ONYX. Funciona como una suscripción: una cuota al mes, desde el día que empezáis.</p>
+  <div class="prices">
+    <div class="card">
+      <div class="k">1 CLASE / SEMANA</div>
+      <div class="amt"><b class="display">119 €</b><span>/mes</span></div>
+      <div class="cmp">Por trimestres serían <b>149 €/mes</b>.<br>La misma cuota todo el curso.</div>
+    </div>
+    <div class="card two">
+      <div class="k">2 CLASES / SEMANA</div>
+      <div class="amt"><b class="display">169 €</b><span>/mes</span></div>
+      <div class="cmp">Por trimestres serían <b>199 €/mes</b>.<br>La misma cuota todo el curso.</div>
+    </div>
+    <div class="founder">
+      <div>
+        <div class="k">PRECIO FUNDADOR</div>
+        <div class="big display">Solo para las 5 primeras familias.</div>
+        <p>Os lo quedáis mientras sigáis en Apex.</p>
+      </div>
+      <div class="seats"><i></i><i></i><i></i><i></i><i></i></div>
+    </div>
   </div>
 
-  <div class="price">
-    <div class="col">
-      <div class="lbl">1 clase individual a la semana</div>
-      <div class="num display">119 €<span>/mes</span></div>
-      <div class="cmp">Por trimestres, con Consolida: 149 €/mes</div>
-    </div>
-    <div class="col">
-      <div class="lbl">2 clases individuales a la semana</div>
-      <div class="num display">169 €<span>/mes</span></div>
-      <div class="cmp">Por trimestres, con Consolida: 199 €/mes</div>
-    </div>
-  </div>
-
-  <p class="founder"><i></i><b>Precio fundador.</b> Solo para las 5 primeras familias, y os lo quedáis mientras sigáis.</p>
-
-  <div class="promises">
-    <div><h3>Una cuota fija.</h3><p>La misma todo el curso. Sin matrícula ni extras.</p></div>
-    <div><h3>Termina en junio.</h3><p>Acaba el curso, se acaba la cuota.</p></div>
-    <div><h3>Sin riesgo al empezar.</h3><p>Si tras la primera clase no encaja, os devuelvo la cuota.</p></div>
-  </div>
-
-  <footer><img src="es_logo.png" alt="EnglishScaling"><span>Nacho Herrero Cuesta</span></footer>
-</section>
-
-<section class="page p2">
-  <img class="logo" src="logo.png" alt="ONYX">
-
-  <h2 class="display">Todo incluido.</h2>
-  <p class="sub">Con 1 o con 2 clases a la semana, todo lo demás es igual.</p>
-
-  <div class="grid">
-    <div class="g">
-      <h4>ANTES DE EMPEZAR</h4>
-      <ul>
-        <li>Diagnóstico en profundidad e informe inicial</li>
-        <li>Evaluación inicial y final</li>
-        <li>Un plan hasta junio, ajustado cada 15 días</li>
-      </ul>
-    </div>
-    <div class="g">
-      <h4>EN CLASE</h4>
-      <ul>
-        <li>Clases individuales en directo de 60 minutos</li>
-        <li>Técnicas de estudio y repasos activos</li>
-        <li>Inglés más allá del temario</li>
-      </ul>
-    </div>
-    <div class="g">
-      <h4>ENTRE CLASES</h4>
-      <ul>
-        <li>Tareas con corrección personalizada</li>
-        <li>Clases grabadas para repasar</li>
-        <li>Drive con todo su material</li>
-      </ul>
-    </div>
-    <div class="g">
-      <h4>EXÁMENES</h4>
-      <ul>
-        <li>Ficha y sesión antes de cada examen</li>
-        <li>Análisis de cada examen</li>
-        <li>Simulacros del instituto y de Selectividad</li>
-        <li>Intensivo de Selectividad</li>
-      </ul>
-    </div>
-    <div class="g">
-      <h4>SIEMPRE EN CONTACTO</h4>
-      <ul>
-        <li>WhatsApp 24/7 con respuesta prioritaria</li>
-        <li>Una llamada al mes con la familia</li>
-        <li>Un informe de progreso cada mes</li>
-      </ul>
-    </div>
-    <div class="g">
-      <h4>FLEXIBILIDAD</h4>
-      <ul>
-        <li>Cambios de clase flexibles</li>
-        <li>Hasta 2 sesiones extra cada trimestre</li>
-        <li>Plaza reservada para el próximo curso</li>
-      </ul>
-    </div>
+  <div class="inc">
+    <div class="k">TODO LO QUE INCLUYE APEX</div>
+    <ul>
+      <li>Diagnóstico en profundidad e informe inicial</li>
+      <li>Evaluación inicial y final</li>
+      <li>Plan hasta junio, ajustado cada quince días</li>
+      <li>Clases individuales en directo de 60 min</li>
+      <li>Tareas con corrección personalizada</li>
+      <li>Clases grabadas para volver a verlas</li>
+      <li>Inglés más allá del temario</li>
+      <li>Técnicas de estudio y repasos activos</li>
+      <li>Ficha y sesión antes de cada examen</li>
+      <li>Análisis de cada examen</li>
+      <li>Simulacros del instituto y de Selectividad</li>
+      <li>Intensivo de Selectividad</li>
+      <li>WhatsApp 24/7 con respuesta prioritaria</li>
+      <li>Drive con todo su material</li>
+      <li>Una llamada al mes con la familia</li>
+      <li>Informe de progreso completo cada mes</li>
+      <li>Cambios de clase flexibles</li>
+      <li>Hasta 2 sesiones extra sin coste cada trimestre</li>
+      <li>Garantía de arranque</li>
+      <li>Plaza reservada para el próximo curso</li>
+    </ul>
   </div>
 
   <div class="terms">
-    <h5>Condiciones</h5>
+    <h5>LETRA PEQUEÑA</h5>
     <div class="cols">
-      <p><b>Alta y cobro.</b> La suscripción empieza el día que os apuntáis y se cobra cada mes ese mismo día. Altas hasta febrero.</p>
-      <p><b>Fin de curso.</b> Termina en junio, con el final del curso. A partir de ahí no hay más cobros.</p>
+      <p><b>Alta y cobro.</b> La suscripción empieza el día que os apuntáis y se cobra cada mes ese mismo día. Termina en junio, con el final del curso, y ya no hay más cobros. Altas hasta febrero.</p>
+      <p><b>Baja.</b> Avisando con al menos 15 días de antelación al siguiente cobro; si no, ese mes ya se cobra. Las 3 primeras cuotas cubren el arranque: el diagnóstico y el plan del curso.</p>
+      <p><b>Salida justa.</b> Si la dais de baja antes de junio, los meses hechos se ajustan al precio por trimestres (149 € o 199 € al mes): 30 € más por cada mes.</p>
       <p><b>Garantía de arranque.</b> Si tras el diagnóstico y la primera clase no es lo que necesita, os devuelvo la primera cuota y la suscripción se cancela.</p>
-      <p><b>Baja.</b> Las 3 primeras cuotas cubren el arranque: el diagnóstico y el plan de todo el curso. Después, podéis darla de baja cuando queráis, avisando con al menos 15 días de antelación al siguiente cobro. Si no, ese mes ya se cobra.</p>
-      <p><b>Salida justa.</b> Si la dais de baja antes de junio, los meses hechos se ajustan al precio de Consolida (149 € o 199 € al mes): 30 € más por cada mes.</p>
       <p><b>Precio fundador.</b> Para las 5 primeras familias. Se mantiene mientras sigáis en Apex, también si renováis el curso que viene.</p>
       <p><b>Antes de cada examen.</b> Ficha con los puntos clave 2 o 3 días antes y sesión de repaso de 30 minutos, reservada con al menos 5 días.</p>
-      <p><b>Sesiones extra.</b> Hasta 2 por trimestre si no se ha llegado al objetivo acordado y el alumno ha seguido el plan: venir a clase y entregar las tareas.</p>
+      <p><b>Sesiones extra.</b> Si al acabar un trimestre no se ha llegado al objetivo acordado y el alumno ha seguido el plan: venir a clase y entregar las tareas.</p>
       <p><b>Grabaciones.</b> Las clases se graban solo con el consentimiento de la familia.</p>
     </div>
   </div>
 
-  <footer><img src="es_logo.png" alt="EnglishScaling"><span>Nacho Herrero Cuesta</span></footer>
-</section>
-
+  <footer>
+    <img src="es_logo.png" alt="EnglishScaling">
+    <span>ESO · Bachillerato · Selectividad</span>
+  </footer>
+</div>
 </body>
 </html>
