@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>ONYX Apex</title>
+<style>
+  @page { size: A4; margin: 0; }
+  :root {
+    --cream: #FBFAF7; --navy: #0E0E6B; --red: #E8403F; --gray: #6B6F80;
+    --lav: #EFEEF8; --line: #E7E4DE; --dark: #1D1D1F; --gold: #C9A35B; --gold-soft: #DFD3BE;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 210mm; height: 297mm; background: var(--cream); }
+  body { font-family: "Inter", sans-serif; color: var(--navy); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page { position: relative; width: 210mm; height: 297mm; padding: 11mm 17mm 0; overflow: hidden; page-break-after: always; }
+  .page:last-child { page-break-after: auto; }
+
+  /* header */
+  header { display: flex; justify-content: space-between; align-items: flex-start; }
+  .brand img { height: 12.5mm; display: block; }
+  .tag { margin-top: 2.2mm; font-size: 9.6pt; color: var(--gray); }
+  .tag b { color: var(--navy); font-weight: 700; } .tag b i { color: var(--red); font-style: normal; }
+  .who { display: flex; align-items: center; gap: 3.5mm; text-align: right; margin-top: 2mm; }
+  .who strong { display: block; font-size: 10pt; font-weight: 700; }
+  .who span { font-size: 8pt; color: var(--gray); }
+  .who img { width: 13mm; height: 13mm; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.12); }
+
+  .eyebrow { margin-top: 6mm; font-size: 7.6pt; font-weight: 700; letter-spacing: .32em; color: var(--red); }
+  h1 { margin-top: 1.6mm; font-family: "Inter Display", "Inter", sans-serif; font-size: 25pt; line-height: 1.05; letter-spacing: -.01em; font-weight: 700; }
+  .lead { margin-top: 2.4mm; font-size: 10pt; line-height: 1.45; color: var(--gray); max-width: 160mm; }
+  .lead b { color: var(--navy); font-weight: 600; }
+
+  /* diagnóstico */
+  .diag { margin-top: 5mm; background: var(--lav); border-left: 4px solid var(--red); border-radius: 0 4mm 4mm 0; padding: 3.4mm 5mm 3.6mm; }
+  .diag .steps { margin-top: 2.4mm; padding-left: 6.4mm; }
+  .diag h3 { font-size: 10pt; font-weight: 700; white-space: nowrap; display: flex; align-items: center; gap: 2.4mm; }
+  .steps { display: flex; align-items: center; gap: 2.2mm; }
+  .step { background: #fff; border-radius: 99px; padding: 1.4mm 3.2mm 1.4mm 1.4mm; font-size: 8pt; font-weight: 600; display: flex; align-items: center; gap: 2mm; white-space: nowrap; }
+  .step i { font-style: normal; width: 4.6mm; height: 4.6mm; border-radius: 50%; background: var(--navy); color: #fff; font-size: 7pt; display: grid; place-items: center; }
+  .arrow { color: var(--red); font-size: 11pt; }
+
+  /* price */
+  .prices { margin-top: 4.2mm; display: grid; grid-template-columns: 1fr 1fr 1.08fr; gap: 4mm; align-items: stretch; }
+  .card { background: var(--dark); border-radius: 4mm; padding: 4.2mm 5mm 4mm; color: #fff; position: relative; }
+  .card.two { outline: 1.5px solid var(--gold); outline-offset: -1.5px; }
+  .card .k { font-size: 7.2pt; font-weight: 700; letter-spacing: .24em; color: var(--gold); }
+  .card .amt { margin-top: 2.6mm; display: flex; align-items: baseline; gap: 1.4mm; }
+  .card .amt b { font-family: "Inter Display", "Inter", sans-serif; font-size: 30pt; line-height: 1; font-weight: 700; color: var(--gold); letter-spacing: -.01em; }
+  .card .amt span { font-size: 10pt; color: var(--gold-soft); font-weight: 600; }
+  .card .was { margin-top: 1.6mm; font-size: 8pt; color: #B9B9C0; }
+  .card .was s { color: #8E8E96; }
+  .card .fix { margin-top: 2.6mm; padding-top: 2.4mm; border-top: 1px solid #3A3833; font-size: 8pt; color: #E6E3DC; line-height: 1.4; }
+  .founder { background: var(--red); color: #fff; border-radius: 4mm; padding: 4.2mm 5mm; display: flex; flex-direction: column; justify-content: space-between; }
+  .founder .k { font-size: 7.2pt; font-weight: 700; letter-spacing: .24em; opacity: .9; }
+  .founder .big { font-family: "Inter Display", "Inter", sans-serif; font-size: 17pt; font-weight: 700; line-height: 1.1; margin-top: 2mm; }
+  .founder p { font-size: 8.2pt; line-height: 1.4; margin-top: 2mm; }
+  .seats { display: flex; gap: 1.6mm; margin-top: 2.6mm; }
+  .seats i { width: 5.4mm; height: 5.4mm; border-radius: 50%; border: 1.6px solid #fff; background: rgba(255,255,255,.15); }
+
+  /* totals table */
+  .totals { margin-top: 4.6mm; }
+  .totals .head, .totals .row { display: grid; grid-template-columns: 26mm 1fr 15mm 30mm 30mm; align-items: center; column-gap: 3mm; }
+  .totals .head { font-size: 6.8pt; font-weight: 700; letter-spacing: .22em; color: var(--red); padding-bottom: 2mm; border-bottom: 1.5px solid var(--navy); }
+  .totals .head .r, .totals .row .r { text-align: right; }
+  .totals .head .c { text-align: center; }
+  .months-label { display: grid; grid-template-columns: repeat(10, 1fr); gap: 1mm; font-size: 6.6pt; font-weight: 700; color: var(--navy); letter-spacing: 0; text-align: center; }
+  .totals .row { padding: 1.05mm 0; border-bottom: 1px solid var(--line); font-size: 9pt; }
+  .totals .row .m { font-weight: 700; }
+  .chips { display: grid; grid-template-columns: repeat(10, 1fr); gap: 1mm; }
+  .chips i { height: 3.6mm; border-radius: 1mm; background: var(--navy); }
+  .chips i.off { background: var(--line); }
+  .chips i.start { background: var(--red); }
+  .totals .row .n { text-align: center; font-weight: 700; font-size: 10.5pt; }
+  .totals .row .t { text-align: right; font-weight: 700; font-size: 10.5pt; }
+  .totals .row .t small { display: block; font-size: 6.8pt; font-weight: 500; color: var(--gray); }
+  .totals .row.hl { background: #F3F1EA; border-radius: 1.6mm; border-bottom-color: transparent; padding-left: 2mm; padding-right: 2mm; margin: 0 -2mm; }
+  .legend { margin-top: 2mm; display: flex; gap: 5mm; font-size: 7.4pt; color: var(--gray); align-items: center; }
+  .legend i { display: inline-block; width: 2.8mm; height: 2.8mm; border-radius: .8mm; margin-right: 1.4mm; vertical-align: -0.4mm; }
+
+  /* closed price conditions */
+  .rules-title { margin-top: 5mm; font-size: 7.6pt; font-weight: 700; letter-spacing: .32em; color: var(--red); }
+  .rules { margin-top: 2.6mm; display: grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; }
+  .rule { border: 1px solid var(--line); background: #fff; border-radius: 3mm; padding: 3mm 3.2mm; }
+  .rule .ic { width: 6mm; height: 6mm; border-radius: 50%; background: var(--lav); display: grid; place-items: center; margin-bottom: 1.8mm; }
+  .rule h4 { font-size: 8.6pt; font-weight: 700; line-height: 1.2; }
+  .rule p { margin-top: 1.2mm; font-size: 7.3pt; line-height: 1.38; color: var(--gray); }
+  .rule p b { color: var(--navy); font-weight: 600; }
+
+  /* includes */
+  .inc { margin-top: 4.6mm; background: var(--dark); border-radius: 4mm; padding: 4.2mm 6mm 3.6mm; color: #fff; }
+  .inc .k { font-size: 7.2pt; font-weight: 700; letter-spacing: .3em; color: var(--gold); }
+  .inc ul { list-style: none; columns: 2; column-gap: 8mm; margin-top: 2.6mm; }
+  .inc li { font-size: 8.1pt; line-height: 1.25; padding: .95mm 0 .95mm 6mm; position: relative; break-inside: avoid; }
+  .inc li::before { content: ""; position: absolute; left: .4mm; top: 1.5mm; width: 2.8mm; height: 1.5mm; border-left: 1.6px solid var(--gold); border-bottom: 1.6px solid var(--gold); transform: rotate(-45deg); }
+  .inc sup { font-size: 5.5pt; }
+  .notes { margin-top: 2mm; font-size: 6.6pt; line-height: 1.4; color: #B9B9C0; }
+
+  footer { position: absolute; left: 17mm; right: 17mm; bottom: 8mm; border-top: 1px solid var(--line); padding-top: 3mm; display: flex; justify-content: space-between; align-items: center; }
+  footer img { height: 4.6mm; }
+  footer span { font-size: 7.4pt; color: var(--gray); }
+
+  .p2head { display: flex; justify-content: space-between; align-items: center; padding-bottom: 4mm; border-bottom: 1px solid var(--line); }
+  .p2head img { height: 8mm; }
+  .p2head span { font-size: 7.6pt; font-weight: 700; letter-spacing: .32em; color: var(--red); }
+  .groups { margin-top: 5mm; background: var(--dark); border-radius: 5mm; padding: 6mm 7mm 5mm; color: #fff; display: grid; grid-template-columns: 1fr 1fr; gap: 5.5mm 9mm; }
+  .grp h5 { font-size: 7.2pt; font-weight: 700; letter-spacing: .26em; color: var(--gold); padding-bottom: 2mm; border-bottom: 1px solid #3A3833; display: flex; align-items: center; gap: 2mm; }
+  .grp ul { list-style: none; margin-top: 1.4mm; }
+  .grp li { font-size: 9.2pt; line-height: 1.3; padding: 1.25mm 0 1.25mm 6.4mm; position: relative; }
+  .grp li::before { content: ""; position: absolute; left: .4mm; top: 2.1mm; width: 3mm; height: 1.6mm; border-left: 1.7px solid var(--gold); border-bottom: 1.7px solid var(--gold); transform: rotate(-45deg); }
+  .grp li small { display: block; font-size: 7.4pt; color: #A9A9B2; margin-top: .4mm; }
+  .grp sup { font-size: 5.8pt; color: var(--gold); }
+  .grp.wide { grid-column: 1 / -1; }
+  .grp.wide ul { display: grid; grid-template-columns: 1fr 1fr; column-gap: 9mm; }
+  .notes2 { margin-top: 3mm; font-size: 7pt; line-height: 1.45; color: var(--gray); }
+  .cta { margin-top: 6mm; border: 1.5px solid var(--navy); border-radius: 4mm; padding: 5mm 6mm; display: flex; justify-content: space-between; align-items: center; gap: 6mm; }
+  .cta h3 { font-family: "Inter Display", "Inter", sans-serif; font-size: 17pt; font-weight: 700; line-height: 1.1; }
+  .cta p { margin-top: 1.4mm; font-size: 9pt; color: var(--gray); line-height: 1.4; }
+  .cta .sum { text-align: right; white-space: nowrap; }
+  .cta .sum b { display: block; font-family: "Inter Display", "Inter", sans-serif; font-size: 22pt; color: var(--red); line-height: 1; }
+  .cta .sum span { font-size: 8pt; color: var(--gray); }
+  .how { margin-top: 6mm; }
+  .how .t { font-size: 7.6pt; font-weight: 700; letter-spacing: .32em; color: var(--red); }
+  .how .s { margin-top: 2.6mm; display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: center; gap: 3mm; }
+  .how .b { background: var(--lav); border-radius: 3mm; padding: 3.4mm 4mm; display: flex; gap: 3mm; align-items: center; }
+  .how .b i { font-style: normal; flex: none; width: 6.4mm; height: 6.4mm; border-radius: 50%; background: var(--navy); color: #fff; font-size: 8pt; font-weight: 700; display: grid; place-items: center; }
+  .how .b strong { display: block; font-size: 9pt; }
+  .how .b span { display: block; font-size: 7.4pt; color: var(--gray); margin-top: .5mm; }
+  .how .arrow { font-size: 13pt; }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <div class="brand">
+      <img src="logo.png" alt="ONYX">
+      <div class="tag"><b><i>O</i>w<i>N</i> <i>Y</i>our e<i>X</i>ams.</b>&nbsp; Domina tus exámenes.</div>
+    </div>
+    <div class="who">
+      <div><strong>Nacho Herrero Cuesta</strong><span>Programa de acompañamiento en inglés</span></div>
+      <img src="photo.png" alt="">
+    </div>
+  </header>
+
+  <div class="eyebrow">ONYX APEX · CURSO COMPLETO</div>
+  <h1>Todo el curso. Una cuota fija al mes.</h1>
+  <p class="lead">Un plan que acompaña a tu hijo desde el día que empieza hasta junio o Selectividad. <b>Pagas lo mismo cada mes y la cuota no cambia en todo el curso.</b> Sin pagar de golpe y sin sorpresas.</p>
+
+  <div class="diag">
+    <h3><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#E8403F" stroke-width="2.6" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>Diagnóstico en profundidad al inicio.</h3>
+    <div class="steps">
+      <div class="step"><i>1</i>Formulario en familia</div><span class="arrow">→</span>
+      <div class="step"><i>2</i>Prueba inicial</div><span class="arrow">→</span>
+      <div class="step"><i>3</i>Plan a su medida</div>
+    </div>
+  </div>
+
+  <div class="prices">
+    <div class="card">
+      <div class="k">1 CLASE / SEMANA</div>
+      <div class="amt"><b>119 €</b><span>/mes</span></div>
+      <div class="was">Precio habitual <s>129 €/mes</s></div>
+      <div class="fix">Cuota fija hasta junio.<br>1 clase 1:1 de 60 min cada semana.</div>
+    </div>
+    <div class="card two">
+      <div class="k">2 CLASES / SEMANA</div>
+      <div class="amt"><b>169 €</b><span>/mes</span></div>
+      <div class="was">Precio habitual <s>179 €/mes</s></div>
+      <div class="fix">Cuota fija hasta junio.<br>2 clases 1:1 de 60 min cada semana.</div>
+    </div>
+    <div class="founder">
+      <div>
+        <div class="k">PRECIO FUNDADOR</div>
+        <div class="big">Solo para las 5 primeras familias.</div>
+        <p>Os quedáis con este precio mientras sigáis en Apex, también el curso que viene.</p>
+      </div>
+      <div class="seats"><i></i><i></i><i></i><i></i><i></i></div>
+    </div>
+  </div>
+
+  <div class="totals">
+    <div class="head">
+      <div>EMPIEZA EN</div>
+      <div class="months-label"><span>Sep</span><span>Oct</span><span>Nov</span><span>Dic</span><span>Ene</span><span>Feb</span><span>Mar</span><span>Abr</span><span>May</span><span>Jun</span></div>
+      <div class="c">CUOTAS</div>
+      <div class="r">1 CLASE</div>
+      <div class="r">2 CLASES</div>
+    </div>
+    <!-- rows filled below -->
+    <div id="rows"></div>
+    <div class="legend">
+      <span><i style="background:var(--red)"></i>Mes en que empieza</span>
+      <span><i style="background:var(--navy)"></i>Meses de cuota hasta junio</span>
+      <span>Total del curso completo, con el precio fundador. Ese es el precio cerrado.</span>
+    </div>
+  </div>
+
+  <div class="rules-title">PRECIO CERRADO, SIN LETRA PEQUEÑA</div>
+  <div class="rules">
+    <div class="rule">
+      <div class="ic"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0E0E6B" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div>
+      <h4>Precio cerrado</h4>
+      <p>La cuota <b>no sube en todo el curso</b> y lo incluye todo. No hay matrícula ni pagos extra.</p>
+    </div>
+    <div class="rule">
+      <div class="ic"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0E0E6B" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div>
+      <h4>Cómo se paga</h4>
+      <p>La primera cuota al empezar. Después, <b>el día 1 de cada mes</b>. En junio el cobro <b>se para solo</b>.</p>
+    </div>
+    <div class="rule">
+      <div class="ic"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0E0E6B" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6l-8-3Z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg></div>
+      <h4>Garantía de arranque</h4>
+      <p>Si tras el diagnóstico y la primera clase veis que no es lo que necesita, <b>os devuelvo la cuota</b>.</p>
+    </div>
+    <div class="rule">
+      <div class="ic"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0E0E6B" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h5"/><path d="M15 8l4 4-4 4M19 12H9"/></svg></div>
+      <h4>Salida justa</h4>
+      <p>¿Lo dejáis antes de junio? Los meses hechos se recalculan al precio trimestral: <b>30 € por mes</b>. Nunca pagáis más que con otro programa.</p>
+    </div>
+  </div>
+
+  <footer>
+    <img src="es_logo.png" alt="EnglishScaling">
+    <span>ESO · Bachillerato · Selectividad</span>
+  </footer>
+</div>
+
+<div class="page">
+  <div class="p2head"><img src="logo.png" alt="ONYX"><span>ONYX APEX · TODO LO QUE INCLUYE</span></div>
+  <h1 style="margin-top:7mm">Todo esto entra en la cuota.</h1>
+  <p class="lead">Da igual que sea 119 € o 169 € al mes: lo único que cambia es si tiene 1 o 2 clases a la semana. Todo lo demás va incluido desde el primer día hasta junio.</p>
+
+  <div class="groups">
+    <div class="grp">
+      <h5>ANTES DE EMPEZAR</h5>
+      <ul>
+        <li>Diagnóstico en profundidad e informe inicial<small>Formulario en familia, prueba inicial y plan a su medida</small></li>
+        <li>Evaluación inicial y final<small>Para ver, con datos, cuánto ha avanzado</small></li>
+        <li>Plan anual hasta junio<small>Ajustado cada quince días según cómo va</small></li>
+      </ul>
+    </div>
+    <div class="grp">
+      <h5>CADA SEMANA</h5>
+      <ul>
+        <li>Clases 1:1 en directo de 60 minutos<small>1 o 2 a la semana, según la modalidad</small></li>
+        <li>Tareas con corrección personalizada</li>
+        <li>Clases grabadas para volver a verlas<sup>1</sup></li>
+        <li>Inglés más allá del temario</li>
+        <li>Técnicas de estudio y repasos activos</li>
+      </ul>
+    </div>
+    <div class="grp">
+      <h5>EXÁMENES</h5>
+      <ul>
+        <li>Ficha «Antes del examen»<small>Trucos y puntos clave, 2 o 3 días antes</small></li>
+        <li>Sesión de análisis previa a cada examen</li>
+        <li>Análisis de cada examen corregido</li>
+        <li>Simulacros del instituto y de Selectividad</li>
+        <li>Intensivo de Selectividad</li>
+      </ul>
+    </div>
+    <div class="grp">
+      <h5>ACOMPAÑAMIENTO</h5>
+      <ul>
+        <li>WhatsApp 24/7 con respuesta prioritaria</li>
+        <li>Drive con todo su material</li>
+        <li>Una llamada al mes con la familia</li>
+        <li>Informe de progreso completo cada mes</li>
+      </ul>
+    </div>
+    <div class="grp wide">
+      <h5>GARANTÍA Y FLEXIBILIDAD</h5>
+      <ul>
+        <li>Garantía de arranque<small>Si tras el diagnóstico y la primera clase no encaja, se devuelve la cuota</small></li>
+        <li>Hasta 2 sesiones extra sin coste cada trimestre<sup>2</sup></li>
+        <li>Cambios de clase flexibles</li>
+        <li>Plaza y precio reservados para el próximo curso</li>
+      </ul>
+    </div>
+  </div>
+  <p class="notes2"><sup>1</sup> Las clases se graban solo con el consentimiento de la familia. <sup>2</sup> Si al acabar un trimestre no se ha llegado al objetivo acordado y el alumno ha seguido el plan (asistir a clase y entregar las tareas). Altas en Apex hasta febrero.</p>
+
+  <div class="cta">
+    <div>
+      <h3>Un precio cerrado para todo el curso.</h3>
+      <p>Ejemplo: si empieza en octubre, son 9 cuotas de 119 € y no hay que pagar nada más hasta junio.</p>
+    </div>
+    <div class="sum"><b>1.071 €</b><span>todo el curso · 1 clase/semana</span></div>
+  </div>
+
+
+  <div class="how">
+    <div class="t">CÓMO EMPEZAR</div>
+    <div class="s">
+      <div class="b"><i>1</i><div><strong>Llamada con la familia</strong><span>45 min por videollamada</span></div></div><span class="arrow">→</span>
+      <div class="b"><i>2</i><div><strong>Diagnóstico</strong><span>Esa misma semana</span></div></div><span class="arrow">→</span>
+      <div class="b"><i>3</i><div><strong>Empieza su plan</strong><span>La semana siguiente</span></div></div>
+    </div>
+  </div>
+
+  <footer>
+    <img src="es_logo.png" alt="EnglishScaling">
+    <span>ESO · Bachillerato · Selectividad</span>
+  </footer>
+</div>
+<script>
+  const rows = [["Septiembre",0],["Octubre",1],["Noviembre",2],["Diciembre",3],["Enero",4],["Febrero",5]];
+  const eur = n => n.toLocaleString("es-ES").replace(/^(\d)(\d{3})$/, "$1.$2") + " €";
+  document.getElementById("rows").innerHTML = rows.map(([m, s]) => {
+    const n = 10 - s;
+    const chips = Array.from({length: 10}, (_, i) => `<i class="${i < s ? "off" : i === s ? "start" : ""}"></i>`).join("");
+    return `<div class="row${""}"><div class="m">${m}</div><div class="chips">${chips}</div><div class="n">${n}</div>
+      <div class="t">${eur(119 * n)}<small>${n} × 119 €</small></div><div class="t">${eur(169 * n)}<small>${n} × 169 €</small></div></div>`;
+  }).join("");
+</script>
+</body>
+</html>
