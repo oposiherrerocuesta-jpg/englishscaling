@@ -126,6 +126,27 @@
   .how .b strong { display: block; font-size: 9pt; }
   .how .b span { display: block; font-size: 7.4pt; color: var(--gray); margin-top: .5mm; }
   .how .arrow { font-size: 13pt; }
+
+  .sub { margin-top: 5mm; display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; }
+  .box { border: 1px solid var(--line); background: #fff; border-radius: 4mm; padding: 4mm 4.6mm; }
+  .bt { font-size: 7pt; font-weight: 700; letter-spacing: .26em; color: var(--red); }
+  .cal { margin-top: 3.6mm; display: grid; grid-template-columns: repeat(10, 1fr) auto; gap: 1mm; align-items: center; }
+  .cal span { background: var(--navy); color: #fff; border-radius: 1.4mm; font-size: 6.6pt; font-weight: 600; text-align: center; padding: 1.5mm 0; }
+  .cal em { font-style: normal; background: var(--red); color: #fff; border-radius: 1.4mm; font-size: 6.6pt; font-weight: 700; letter-spacing: .1em; padding: 1.5mm 1.8mm; margin-left: 1mm; }
+  .cap { margin-top: 3.4mm; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2mm; }
+  .cap div { font-size: 7.6pt; line-height: 1.3; color: var(--navy); display: flex; gap: 1.6mm; align-items: flex-start; }
+  .cap b { flex: none; width: 4.4mm; height: 4.4mm; border-radius: 50%; background: var(--lav); font-size: 6.6pt; display: grid; place-items: center; }
+  .cmp { margin-top: 3.4mm; display: grid; grid-template-columns: 30mm 1fr 15mm; gap: 2.4mm 2.4mm; align-items: center; }
+  .cmp .l { font-size: 7.8pt; color: var(--gray); } .cmp .l b { color: var(--navy); }
+  .cmp .bar { height: 4.2mm; background: transparent; }
+  .cmp .bar i { display: block; height: 100%; border-radius: 1.2mm; background: var(--line); }
+  .cmp .bar i.apex { background: var(--red); }
+  .cmp .v { font-size: 10pt; font-weight: 700; text-align: right; color: var(--gray); }
+  .cmp .v.apex { color: var(--red); }
+  .cmp .v small { font-size: 6.6pt; font-weight: 500; }
+  .save { margin-top: 2.8mm; font-size: 7.6pt; line-height: 1.4; color: var(--gray); }
+  .save b { color: var(--navy); }
+  .cta .sum b small { font-size: 10pt; color: var(--gray); font-weight: 600; }
 </style>
 </head>
 <body>
@@ -141,9 +162,9 @@
     </div>
   </header>
 
-  <div class="eyebrow">ONYX APEX · CURSO COMPLETO</div>
-  <h1>Todo el curso. Una cuota fija al mes.</h1>
-  <p class="lead">Un plan que acompaña a tu hijo desde el día que empieza hasta junio o Selectividad. <b>Pagas lo mismo cada mes y la cuota no cambia en todo el curso.</b> Sin pagar de golpe y sin sorpresas.</p>
+  <div class="eyebrow">ONYX APEX · CURSO COMPLETO EN SUSCRIPCIÓN</div>
+  <h1>Todo el curso, mes a mes.</h1>
+  <p class="lead">Funciona como una suscripción: una cuota cada mes, como en una academia, pero 1:1 y con todo incluido. <b>En junio, cuando acaba el curso, se deja de cobrar sola.</b> Sin pagos grandes y sin sorpresas.</p>
 
   <div class="diag">
     <h3><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#E8403F" stroke-width="2.6" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>Diagnóstico en profundidad al inicio.</h3>
@@ -159,13 +180,13 @@
       <div class="k">1 CLASE / SEMANA</div>
       <div class="amt"><b>119 €</b><span>/mes</span></div>
       <div class="was">Precio habitual <s>129 €/mes</s></div>
-      <div class="fix">Cuota fija hasta junio.<br>1 clase 1:1 de 60 min cada semana.</div>
+      <div class="fix">La misma cuota todo el curso.<br>1 clase 1:1 de 60 min cada semana.</div>
     </div>
     <div class="card two">
       <div class="k">2 CLASES / SEMANA</div>
       <div class="amt"><b>169 €</b><span>/mes</span></div>
       <div class="was">Precio habitual <s>179 €/mes</s></div>
-      <div class="fix">Cuota fija hasta junio.<br>2 clases 1:1 de 60 min cada semana.</div>
+      <div class="fix">La misma cuota todo el curso.<br>2 clases 1:1 de 60 min cada semana.</div>
     </div>
     <div class="founder">
       <div>
@@ -177,34 +198,44 @@
     </div>
   </div>
 
-  <div class="totals">
-    <div class="head">
-      <div>EMPIEZA EN</div>
-      <div class="months-label"><span>Sep</span><span>Oct</span><span>Nov</span><span>Dic</span><span>Ene</span><span>Feb</span><span>Mar</span><span>Abr</span><span>May</span><span>Jun</span></div>
-      <div class="c">CUOTAS</div>
-      <div class="r">1 CLASE</div>
-      <div class="r">2 CLASES</div>
+  <div class="sub">
+    <div class="box">
+      <div class="bt">ASÍ FUNCIONA LA SUSCRIPCIÓN</div>
+      <div class="cal">
+        <span>Sep</span><span>Oct</span><span>Nov</span><span>Dic</span><span>Ene</span><span>Feb</span><span>Mar</span><span>Abr</span><span>May</span><span>Jun</span>
+        <em>FIN</em>
+      </div>
+      <div class="cap">
+        <div><b>1</b>Primera cuota<br>al empezar</div>
+        <div><b>2</b>El día 1 de<br>cada mes</div>
+        <div><b>3</b>En junio se<br>acaba sola</div>
+      </div>
     </div>
-    <!-- rows filled below -->
-    <div id="rows"></div>
-    <div class="legend">
-      <span><i style="background:var(--red)"></i>Mes en que empieza</span>
-      <span><i style="background:var(--navy)"></i>Meses de cuota hasta junio</span>
-      <span>Total del curso completo, con el precio fundador. Ese es el precio cerrado.</span>
+    <div class="box">
+      <div class="bt">SALE MEJOR QUE POR TRIMESTRES</div>
+      <div class="cmp">
+        <div class="l">Pagando por trimestres</div>
+        <div class="bar"><i style="width:100%"></i></div>
+        <div class="v">149 €<small>/mes</small></div>
+        <div class="l"><b>Con Apex</b></div>
+        <div class="bar"><i class="apex" style="width:79.9%"></i></div>
+        <div class="v apex">119 €<small>/mes</small></div>
+      </div>
+      <p class="save"><b>30 € menos cada mes</b>, con el acompañamiento más completo. Con 2 clases, 169 € en vez de 199 €.</p>
     </div>
   </div>
 
-  <div class="rules-title">PRECIO CERRADO, SIN LETRA PEQUEÑA</div>
+  <div class="rules-title">SIN LETRA PEQUEÑA</div>
   <div class="rules">
     <div class="rule">
       <div class="ic"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0E0E6B" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div>
-      <h4>Precio cerrado</h4>
-      <p>La cuota <b>no sube en todo el curso</b> y lo incluye todo. No hay matrícula ni pagos extra.</p>
+      <h4>Una cuota que no sube</h4>
+      <p>El precio es <b>el mismo todo el curso</b> y lo incluye todo. Sin matrícula ni pagos extra.</p>
     </div>
     <div class="rule">
       <div class="ic"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0E0E6B" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div>
-      <h4>Cómo se paga</h4>
-      <p>La primera cuota al empezar. Después, <b>el día 1 de cada mes</b>. En junio el cobro <b>se para solo</b>.</p>
+      <h4>Se acaba sola</h4>
+      <p>Termina el curso y <b>termina la suscripción</b>. Sin renovaciones automáticas ni cobros después de junio.</p>
     </div>
     <div class="rule">
       <div class="ic"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0E0E6B" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6l-8-3Z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg></div>
@@ -214,7 +245,7 @@
     <div class="rule">
       <div class="ic"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0E0E6B" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h5"/><path d="M15 8l4 4-4 4M19 12H9"/></svg></div>
       <h4>Salida justa</h4>
-      <p>¿Lo dejáis antes de junio? Los meses hechos se recalculan al precio trimestral: <b>30 € por mes</b>. Nunca pagáis más que con otro programa.</p>
+      <p>Los 3 primeros meses son el arranque. Después, <b>baja cualquier mes</b> avisando antes del día 20, y los meses hechos se ajustan al precio por trimestres (+30 €/mes).</p>
     </div>
   </div>
 
@@ -277,16 +308,15 @@
       </ul>
     </div>
   </div>
-  <p class="notes2"><sup>1</sup> Las clases se graban solo con el consentimiento de la familia. <sup>2</sup> Si al acabar un trimestre no se ha llegado al objetivo acordado y el alumno ha seguido el plan (asistir a clase y entregar las tareas). Altas en Apex hasta febrero.</p>
+  <p class="notes2"><sup>1</sup> Las clases se graban solo con el consentimiento de la familia. <sup>2</sup> Si al acabar un trimestre no se ha llegado al objetivo acordado y el alumno ha seguido el plan (asistir a clase y entregar las tareas). Altas en Apex hasta febrero. Salida justa: los 3 primeros meses son el arranque; a partir del cuarto, la baja se pide antes del día 20 y se aplica al mes siguiente.</p>
 
   <div class="cta">
     <div>
-      <h3>Un precio cerrado para todo el curso.</h3>
-      <p>Ejemplo: si empieza en octubre, son 9 cuotas de 119 € y no hay que pagar nada más hasta junio.</p>
+      <h3>Una suscripción que se acaba sola.</h3>
+      <p>Cada mes la misma cuota. Cuando termina el curso, en junio, se deja de cobrar y ya está.</p>
     </div>
-    <div class="sum"><b>1.071 €</b><span>todo el curso · 1 clase/semana</span></div>
+    <div class="sum"><b>119 €<small>/mes</small></b><span>o 169 €/mes con 2 clases</span></div>
   </div>
-
 
   <div class="how">
     <div class="t">CÓMO EMPEZAR</div>
@@ -302,15 +332,6 @@
     <span>ESO · Bachillerato · Selectividad</span>
   </footer>
 </div>
-<script>
-  const rows = [["Septiembre",0],["Octubre",1],["Noviembre",2],["Diciembre",3],["Enero",4],["Febrero",5]];
-  const eur = n => n.toLocaleString("es-ES").replace(/^(\d)(\d{3})$/, "$1.$2") + " €";
-  document.getElementById("rows").innerHTML = rows.map(([m, s]) => {
-    const n = 10 - s;
-    const chips = Array.from({length: 10}, (_, i) => `<i class="${i < s ? "off" : i === s ? "start" : ""}"></i>`).join("");
-    return `<div class="row${""}"><div class="m">${m}</div><div class="chips">${chips}</div><div class="n">${n}</div>
-      <div class="t">${eur(119 * n)}<small>${n} × 119 €</small></div><div class="t">${eur(169 * n)}<small>${n} × 169 €</small></div></div>`;
-  }).join("");
-</script>
+
 </body>
 </html>
